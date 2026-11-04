@@ -18,7 +18,9 @@ One user, a fixed collection and single-turn questions are enough. A question fo
 
 **R1 — Sources.** Select **1–2 public English documents or substantive articles** about hold preparation, cleaning or inspection. One publisher is enough. Use short, coherent excerpts: roughly **2–6 pages or 1,000–3,000 words in total** is a sizing guide, not a quota. You may start with one option in [PUBLIC_SOURCES.md](PUBLIC_SOURCES.md); you do not need to research the whole list.
 
-Use text-readable sources without payment, login or corporate access. Avoid OCR, crawling, paid standards, internal company documents, personal records and generated source documents. Manually selecting and saving relevant text once is acceptable; a PDF parser, upload interface and automated ingestion pipeline are unnecessary.
+Use text-readable sources without payment, login or corporate access. Avoid OCR, crawling, paid standards, internal company documents, personal records and generated source documents. 
+
+Important: Manually selecting and saving relevant text once is acceptable; a PDF parser, upload interface and automated ingestion pipeline are unnecessary.
 
 In the README, give each source an ID and record its title, publisher, URL, access date, edition/date if shown, and the sections used. Briefly state scope and reuse conditions. Include selected text only where permitted; otherwise give precise acquisition steps. Public access does not automatically permit reuse. Choose another source if permission is unclear rather than seeking a licence during the exercise. A content hash is optional.
 
@@ -42,7 +44,9 @@ Set expectations from the sources and say if these cases guided prompt tuning. I
 
 **R7 — Reproduction.** Run the frontend, backend, source preparation, storage, retrieval and diagnostics locally. **Model inference is the only remote application service allowed.** The backend must call a public model API. Optional embeddings may run locally or use the same provider and API key as the LLM; any optional model-based evaluation also uses that provider and key. Source/dependency downloads and opening source links are allowed. Hosted application, database, retrieval and telemetry services are outside this prototype's scope.
 
-The team will supply a **temporary API key with a limited development budget**. Agree the provider/models before starting; the team will communicate the spending cap and expiry. You do not need a subscription or personal key. Reviewers use their own team key through the same backend configuration. Keep the key server-side, such as in an environment variable, and provide a configuration template with placeholders.
+The team will supply a **temporary API key (we provide one for the Vercel AI Gateway with a limited development budget for ease)**. You do not need a subscription or personal key. If for some reason, you spend the limit - please contact niko.verlee@tailor-hub.com
+
+Reviewers will use their own team key through the same backend configuration. Keep the key server-side, such as in an environment variable, and provide a configuration template with placeholders.
 
 A short README should explain installation, runtime/dependencies, source preparation, model settings, starting both components, local URLs and repeating the two cases. Keep prompts in the code or configuration. No Docker or one-command installer is required. Target at most **EUR 5 in estimated metered charges** for initial preparation plus the two-case review run; a rough estimate with assumptions is enough. Saved outputs help review but do not replace the live implementation.
 
