@@ -20,13 +20,13 @@ One user, a fixed collection and single-turn questions are enough. A question fo
 
 Use text-readable sources without payment, login or corporate access. Avoid OCR, crawling, paid standards, internal company documents, personal records and generated source documents. 
 
-Important: Manually selecting and saving relevant text once is acceptable; a PDF parser, upload interface and automated ingestion pipeline are unnecessary.
+Manually downloading sources and selecting relevant pages or sections is acceptable, but include runnable code that extracts text from the selected PDF or HTML sources and splits it into chunks, preserving source IDs and page or section references. Manually copied text alone is insufficient. A local preparation script is enough; no upload interface, crawler or scheduled ingestion pipeline is required.
 
 In the README, give each source an ID and record its title, publisher, URL, access date, edition/date if shown, and the sections used. Briefly state scope and reuse conditions. Include selected text only where permitted; otherwise give precise acquisition steps. Public access does not automatically permit reuse. Choose another source if permission is unclear rather than seeking a licence during the exercise. A content hash is optional.
 
 ## 4. Build the smallest useful prototype
 
-**R2 — Live AI flow.** Load the selected text locally and accept new questions through the frontend/backend flow. Use actual remote language-model inference. Explain how source text reaches the model. You may send the small collection directly or choose another approach; RAG, embeddings and a vector database are not required. Prewritten answers or manually pasting context for each question are insufficient.
+**R2 — Live AI flow.** Implement a minimal RAG flow: generate embeddings for the extracted chunks and persist the vectors, chunk text and source/location metadata locally. For each new question from the frontend, embed the question, retrieve a bounded set of relevant chunks using vector similarity, and pass those chunks as context to a remote language-model API. This flow is required even if the entire collection fits in the prompt; concatenating the full corpus into every prompt does not meet the requirement. A local file-backed store or embedded database is enough; no particular vector database or framework is required. Explain your chunking, storage and retrieval choices. Prewritten answers or manually pasting context for each question are insufficient.
 
 **R3 — Evidence.** Show supporting passages in or accessible from the frontend, with source IDs and page, section or passage locations. Connect factual claims to those passages. Document titles alone are insufficient. One useful, supported answer is enough to demonstrate the core.
 
@@ -36,19 +36,19 @@ In the README, give each source an ID and record its title, publisher, URL, acce
 
 ## 5. Check two cases
 
-**R6 — Small verification.** Run **two cases**: one answerable question and one question with information absent from the collection. A short table or saved output for each is sufficient. Record the question, expected behaviour and source passage where applicable, actual output, and your judgement with a reason. State the model/configuration and how to repeat the cases; using the frontend manually is fine.
+**R6 — Small verification.** Run **two cases**: one answerable question and one question with information absent from the collection. A short table or saved output for each is sufficient. Record the question, expected behaviour and source passage where applicable, retrieved chunk IDs (or no results), actual output, and your judgement with a reason. State the model/configuration and how to repeat the cases; using the frontend manually is fine.
 
 Set expectations from the sources and say if these cases guided prompt tuning. Identify one limitation or uncertainty and the next check you would run. It may be a design limitation if both cases work; no extra experiment or manufactured failure is required. No automated tests, evaluation framework, judge model, benchmark or aggregate score are required.
 
 ## 6. Run locally with one model API key
 
-**R7 — Reproduction.** Run the frontend, backend, source preparation, storage, retrieval and diagnostics locally. **Model inference is the only remote application service allowed.** The backend must call a public model API. Optional embeddings may run locally or use the same provider and API key as the LLM; any optional model-based evaluation also uses that provider and key. Source/dependency downloads and opening source links are allowed. Hosted application, database, retrieval and telemetry services are outside this prototype's scope.
+**R7 — Reproduction.** Run the frontend, backend, source preparation, storage, retrieval and diagnostics locally. **Model inference is the only remote application service allowed.** The backend must call a public model API. Embeddings may run locally or use the same provider and API key as the LLM; any optional model-based evaluation also uses that provider and key. Source/dependency downloads and opening source links are allowed. Hosted application, database, retrieval and telemetry services are outside this prototype's scope.
 
 The team will supply a **temporary API key (we provide one for the Vercel AI Gateway with a limited development budget for ease)**. You do not need a subscription or personal key. If for some reason, you spend the limit - please contact niko.verlee@tailor-hub.com
 
 Reviewers will use their own team key through the same backend configuration. Keep the key server-side, such as in an environment variable, and provide a configuration template with placeholders.
 
-A short README should explain installation, runtime/dependencies, source preparation, model settings, starting both components, local URLs and repeating the two cases. Keep prompts in the code or configuration. No Docker or one-command installer is required. Target at most **EUR 5 in estimated metered charges** for initial preparation plus the two-case review run; a rough estimate with assumptions is enough. Saved outputs help review but do not replace the live implementation.
+A short README should explain installation, runtime/dependencies, source preparation (including how to rebuild and reload the persisted store), LLM and embedding model settings, starting both components, local URLs and repeating the two cases. Keep prompts in the code or configuration. No Docker or one-command installer is required. Target at most **EUR 5 in estimated metered charges** for initial preparation plus the two-case review run; a rough estimate with assumptions is enough. Saved outputs help review but do not replace the live implementation.
 
 ## 7. Prepare to defend your decisions
 
