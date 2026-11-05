@@ -68,4 +68,4 @@ For the material you actually choose:
 4. Record the original URL, title, publisher, edition/date if shown, access date, selected sections and applicable reuse basis in the README. A content hash is optional. Note missing publication dates rather than inferring them from a URL or copyright footer.
 5. Share permitted text with attribution, or provide acquisition instructions as appropriate. A download script or the choice of model does not override restrictions on the underlying material's use.
 
-No particular publisher, source combination, ingestion method or model provider is required. Follow the task's local application and remote model API constraints. The candidate remains responsible for source selection, evaluation and the implemented system.
+No particular publisher, source combination, parsing library or model provider is required. Follow the task's required extraction, chunking, embedding, local persistence and retrieval flow, as well as its local application and remote model API constraints. The candidate remains responsible for source selection, evaluation and the implemented system.
