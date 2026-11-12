@@ -12,7 +12,9 @@ The prototype gives us something concrete to discuss. Your technical understandi
 
 Implement **a local web frontend connected to a local backend API**. A user enters a question in English; the backend calls a remote language-model API using your selected material; the frontend displays the answer and supporting passages, or an evidence gap.
 
-One user, a fixed collection and single-turn questions are enough. A question form and basic answer/evidence/error display are sufficient. A CLI-only or API-only submission does not meet the requirement. Setup and evaluation scripts are welcome. No particular framework or separate deployment is required: both components may share a repository and local server if the frontend calls an identifiable backend API.
+One user, a fixed collection and single-turn questions are enough. A question form and basic answer/evidence/error display are sufficient. A CLI-only or API-only submission does not meet the requirement. Setup and evaluation scripts are welcome. 
+
+No particular framework is required, although React for the Frontend + FastAPI for the Backend are bonus (what we usually use). If you prefer to do it in other frameworks, that will be fine as well - just be prepared to talk about your design decisions in the defense when we will sit down with you.
 
 ## 3. Select a small amount of material
 
